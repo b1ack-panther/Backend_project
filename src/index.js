@@ -1,24 +1,19 @@
 // require('dotenv').config({path: './env'})
 
-import express from 'express';
-import dotenv from 'dotenv'
-import connectDB from './db/index.js'
-dotenv.config({ path: './env' })
+// import dotenv from 'dotenv'
+// import connectDB from './db/index.js'
+// dotenv.config({ path: './env' })
+// import { app } from './app.js'
 
-const app = express()
-
-connectDB()
-  .then(() => {
-    app.listen(process.env.PORT, () => {
-    console.log("Server is running at port ", process.env.PORT)
-  })
-  })
-  .catch((error) => {
-    console.log("mongoDB connection failed!!", error)
-  })
-
-// const app = express();
-// const port = process.env.PORT || 5000;
+// connectDB()
+//   .then(() => {
+//     app.listen(process.env.PORT, () => {
+//     console.log("Server is running at port ", process.env.PORT)
+//   })
+//   })
+//   .catch((error) => {
+//     console.log("mongoDB connection failed!!", error)
+//   })
 
 // (async () => {
 //   try {
@@ -36,3 +31,21 @@ connectDB()
 //     throw err
 //   }
 // })()
+
+import dotenv from "dotenv";
+import connectDB from "./db/index.js";
+import { app } from "./app.js";
+dotenv.config({
+	path: "./.env",
+});
+
+connectDB()
+	.then(() => {
+		app.listen(process.env.PORT, () => {
+			console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
+		});
+	})
+	.catch((err) => {
+		console.log("MONGO db connection failed !!! ", err);
+	});
+
